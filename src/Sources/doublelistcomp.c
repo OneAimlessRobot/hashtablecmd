@@ -3,11 +3,17 @@
 #include "../Includes/nodes.h"
 #include "../Includes/doublelistcomp.h"
 #include "../Includes/auxFuncs.h"
-static DNode* initNakedDNode(void*initmem){
+
+
+static DNode* initNakedDNode(DListW*list,void*initmem){
 
 DNode* newNode= malloc(sizeof(DNode));
 
-newNode->mem=initmem;
+//newNode->mem=malloc(newNode->memSize);
+//memcpy(newNode->mem,initmem, memSize);
+
+node->mem= malloc(list->elemSize);
+memcpy(node->mem,initmem,list->elemSize);
 newNode->prev=NULL;
 newNode->next=NULL;
 
@@ -38,6 +44,7 @@ result->comp=comp;
 return result;
 
 }
+//pre: node->mem ==NULL and node->mem is free
 DList destroyHEADDNode(DNode* node){
 if(!node){
 return node;
@@ -123,16 +130,16 @@ static DList findNode(DListWComp*list,void* data){
 
 void* findElemListCompComp(DListWComp* list,void* data){
 
-		
-		if(list->currSize){
-                         DList node=findNode(list,data);
-			if(node){
-			return node->mem;
-			}
-			else{
-			return NULL;
-			}
-		}
+	
+                 if(list->currSize){
+                          DList node=findNode(list,data);
+                         if(node){
+                         return node->mem;
+                         }
+                         else{
+                         return NULL;
+                         }
+                 }
 		return NULL;
 
 
@@ -280,7 +287,7 @@ static void addStartOfList(DListWComp* list,DList node){
 
 void addElemToList2(DListWComp* list,void* data,u_int64_t index){
 
-DList node= initNakedDNode(data);
+DList node= initNakedDNode(list,data);
 
                 if(!list->head) {
 
@@ -434,7 +441,7 @@ void remElemFromList2(DListWComp* list,u_int64_t index){
 void addElemToListComp2(DListWComp* list,void* data){
 
 
-DList node= initNakedDNode(data);
+DList node= initNakedDNode(list,data);
 
                 if(!list->head) {
 

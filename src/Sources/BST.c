@@ -1,7 +1,4 @@
 #include "../Includes/preprocessor.h"
-#include "../Includes/doublelist.h"
-#include "../Includes/stackList.h"
-#include "../Includes/queueList.h"
 #include "../Includes/nodes.h"
 #include "../Includes/BST.h"
 
@@ -35,7 +32,8 @@ static BSTNode* initNakedBSTNode(void*initmem){
 BSTNode* node= malloc(sizeof(BSTNode));
 node->left=NULL;
 node->right=NULL;
-node->mem= initmem;
+node->mem= malloc(tree->elemSize);
+memcpy(node->mem,initmem,tree->elemSize);
 return node;
 }
 
@@ -201,7 +199,7 @@ static void linkSubtree(BSTree*tree,BSTNode* node){
 
 }
 void addToBSTree(BSTree* tree,void* elem){
-BSTNode* node= initNakedBSTNode(elem);
+BSTNode* node= initNakedBSTNode(tree,elem);
 	if(!tree->root){
 
 		tree->root=node;
@@ -319,6 +317,8 @@ void printIntBSTreeDepth(BSTree*tree){
 			
 		
 		}
+		destroyBSTNode(node);
+
 		}
 
 	}
@@ -364,6 +364,8 @@ void printIntBSTreeInfix(BSTree*tree){
 			
 		
 		}
+		destroyBSTNode(node);
+
 		}
 
 	}
@@ -399,6 +401,8 @@ void printIntBSTreeBreadth(BSTree*tree){
 			
 		
 		}
+		destroyBSTNode(node);
+
 		}
 
 	}
