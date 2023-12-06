@@ -3,7 +3,6 @@
 #include "../Includes/hashtablecmd.h"
 #include "../Includes/auxFuncs.h"
 #include "../Includes/cmdstruct.h"
-#include "../Includes/cmdfuncexmpl.h"
 
 hashtablecomp* initCmdLine(cmdstruct commands[]){
 
@@ -64,7 +63,7 @@ void runCmdLine(hashtablecomp* cmdLookupTable){
 		free(cmd);
 		
 		if(!result){
-			break;
+	  		continue;
 		}
 		
 		result->cmd(numOfArgs,&toExit,(void**)argv);
