@@ -1,6 +1,6 @@
 #ifndef HASHTABLE_H
 #define HASHTABLE_H
-#define STARTSIZE 7
+#define HTSTARTSIZE 3
 #define GROWFACTOR 2
 #define MIN_LOAD_FACTOR 0.75
 typedef struct hashtable{
@@ -41,7 +41,7 @@ void removeFromHT(hashtable* table,void * mem);
 
 void* getHTElem(hashtable* table,void* mem);
 
-void destroyHashTable(hashtable* table);
+void destroyHashTableSimp(hashtable* table);
 
 void printHashTable(hashtable* table);
 

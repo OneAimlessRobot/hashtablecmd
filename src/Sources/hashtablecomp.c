@@ -3,7 +3,7 @@
 #include "../Includes/comparator.h"
 #include "../Includes/hasher.h"
 #include "../Includes/hashtablecomp.h"
-#include "../Includes/cmdstruct.h"
+
 static u_int64_t getTablePosForElem(hashtablecomp * table, void* mem){
 	
 	return table->hfunc->func((char*)mem)%table->currSpineSize;
@@ -27,8 +27,8 @@ static int isFull(hashtablecomp* table){
 hashtablecomp* initHashTableComp(u_int64_t sizeOfElem,comparator*comp,hasher*hfunc){
 	
 	hashtablecomp* result= malloc(sizeof(hashtablecomp));
-	result->spine= malloc(sizeof(DListWComp*)*STARTSIZE);
-	for(u_int64_t i=0;i<STARTSIZE;i++){
+	result->spine= malloc(sizeof(DListWComp*)*HTCSTARTSIZE);
+	for(u_int64_t i=0;i<HTCSTARTSIZE;i++){
 		
 		result->spine[i]= initDListComp(sizeOfElem,comp);
 
@@ -38,7 +38,7 @@ hashtablecomp* initHashTableComp(u_int64_t sizeOfElem,comparator*comp,hasher*hfu
 	result->currSize=0;
 	result->comp=comp;
 	result->hfunc=hfunc;
-	result->currSpineSize=STARTSIZE;
+	result->currSpineSize=HTCSTARTSIZE;
 	
 	return result;
 
@@ -96,7 +96,7 @@ for(u_int64_t i=0;i<table->currSpineSize;i++){
 			DList node=table->spine[i]->head;
 			for(u_int64_t j=0;j<table->spine[i]->currSize;j++){
 			
-			printf("%s ",(char*)(((cmdstruct*)(node->mem))->cmdname));
+			printf("%s ",(char*)(node->mem));
 			
 			node=node->next;
 

@@ -45,7 +45,7 @@ static int64_t hashString(char* string){
 static comparator* comp=NULL;
 
 static hasher* hfunc =NULL;
-static hashtablecomp* hashtable=NULL;
+static hashtablecomp* ht=NULL;
 
 void addElemHashTable(int64_t argc,int* toExit, void** argv){
 	if(!comp){
@@ -59,9 +59,9 @@ void addElemHashTable(int64_t argc,int* toExit, void** argv){
 
 
 	}
-	if(!hashtable){
+	if(!ht){
 		
-		hashtable=initHashTableComp(STRINGLENGTH,comp,hfunc);
+		ht=initHashTableComp(STRINGLENGTH,comp,hfunc);
 		
 	}
 	
@@ -73,15 +73,15 @@ void addElemHashTable(int64_t argc,int* toExit, void** argv){
 	char buff[STRINGLENGTH];
 	memset(buff,0 ,STRINGLENGTH);
 	memcpy(buff,argv[1],min(STRINGLENGTH-1,strlen(argv[1])));
-	addToHTComp(&hashtable,buff);
+	addToHTComp(&ht,buff);
 	
 }
 void printElemsHashTable(int64_t argc,int* toExit, void** argv){
 
-	if(hashtable){
+	if(ht){
 
 
-		printHashTableComp(hashtable);
+		printHashTableComp(ht);
 	}
 
 }
@@ -98,12 +98,12 @@ void genRandHashTable(int64_t argc,int* toExit, void** argv){
 
 
 	}
-	if(!hashtable){
+	if(!ht){
 		
-		hashtable=initHashTableComp(STRINGLENGTH,comp,hfunc);
+		ht=initHashTableComp(STRINGLENGTH,comp,hfunc);
 		
 	}
-	if(hashtable){
+	if(ht){
 
 		char** arr= randStrArr(STRINGLENGTH-1,randArrSize);
 		
@@ -112,7 +112,7 @@ void genRandHashTable(int64_t argc,int* toExit, void** argv){
 			char buff[STRINGLENGTH];
 			memset(buff,0 ,STRINGLENGTH);
 			memcpy(buff,arr[i],min(STRINGLENGTH-1,strlen(arr[i])));
-			addToHTComp(&hashtable,buff);
+			addToHTComp(&ht,buff);
 		}
 		
 		freeStrArr(arr,randArrSize);
@@ -128,8 +128,8 @@ void remElemHashTable(int64_t argc,int* toExit, void** argv){
 		return;
 	}
 	
-	if(hashtable){
-		removeFromHTComp(hashtable,argv[1]);
+	if(ht){
+		removeFromHTComp(ht,argv[1]);
 
 	}
 
@@ -164,10 +164,10 @@ void destroyHashTable(int64_t argc,int* toExit, void** argv){
 
 		free(hfunc);
 	}
-	if(hashtable){
+	if(ht){
 
-		destroyHashTableComp(hashtable);
-		hashtable=NULL;
+		destroyHashTableComp(ht);
+		ht=NULL;
 	}
 
 
