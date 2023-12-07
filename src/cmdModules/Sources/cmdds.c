@@ -4,14 +4,21 @@
 #include "../../Includes/cmdstruct.h"
 
 
+static const int randArrSize= 20;
+
+static const int minRand= 0;
+
+static const int maxRand= 1000;
+
 cmdstruct dscmds[]={
-			{"addelem",1,addElem,"Adiciona elemento"},
-			{"print",0,printElems,"Mostra elementos"},
-			{"remelem",1,remElem,"remove elemento da queue"},
-			{"sairds",0,sairds,"sair"},
-			{"showallds",0,showallds,"mostrar comandos disponiveis"},
-			{"destroyds",0,destroyds,"destroy queue"},
-			{"",0,0,""}
+			{"addelem",addElem,"Adiciona elemento"},
+			{"print",printElems,"Mostra elementos"},
+			{"remelem",remElem,"remove elemento da queue"},
+			{"genrandelems",genRand,"gerar elementos aleatorios"},
+			{"sairds",sairds,"sair"},
+			{"showallds",showallds,"mostrar comandos disponiveis"},
+			{"destroyds",destroyds,"destroy queue"},
+			{"",0,""}
 		};
 static int compareInts(int* a,int*b){
 
@@ -60,6 +67,32 @@ void destroyds(int64_t argc,int* toExit, void** argv){
 }
 
 
+void genRand(int64_t argc,int* toExit, void** argv){
+	if(!comp){
+		comp=malloc(sizeof(comparator));
+		comp->func=(int(*)(void*,void*))compareInts;
+	}
+	if(!heap){
+		
+		heap=initMinHeap(comp,sizeof(int));
+		
+	}
+	if(heap){
+
+		int* arr= getRandIntArr(minRand,maxRand,randArrSize);
+		
+		for(int i=0;i<randArrSize;i++){
+
+
+			insertMinHeap(heap,&arr[i]);
+		}
+		
+		free(arr);
+
+	}
+
+
+}
 void remElem(int64_t argc,int* toExit, void** argv){
 
 	if(heap){

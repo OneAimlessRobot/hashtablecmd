@@ -4,15 +4,21 @@
 #include "../../Includes/stackList.h"
 #include "../../Includes/cmdstruct.h"
 
+static const int randArrSize= 20;
+
+static const int minRand= 0;
+
+static const int maxRand= 1000;
 
 cmdstruct stackcmds[]={
-			{"addelem",1,addElemStack,"Adiciona elemento"},
-			{"print",0,printElemsStack,"Mostra elementos"},
-			{"remelem",0,remElemStack,"remove elemento da stack"},
-			{"sairds",0,sairStack,"sair"},
-			{"showallds",0,showallStack,"mostrar comandos disponiveis"},
-			{"destroyds",0,destroyStack,"destroy stack"},
-			{"",0,0,""}
+			{"addelem",addElemStack,"Adiciona elemento"},
+			{"print",printElemsStack,"Mostra elementos"},
+			{"remelem",remElemStack,"remove elemento da stack"},
+			{"genrandelems",genRandStack,"gerar elementos aleatorios"},
+			{"sairds",sairStack,"sair"},
+			{"showallds",showallStack,"mostrar comandos disponiveis"},
+			{"destroyds",destroyStack,"destroy stack"},
+			{"",0,""}
 		};
 static int compareInts(int* a,int*b){
 
@@ -52,6 +58,30 @@ void printElemsStack(int64_t argc,int* toExit, void** argv){
 }
 
 
+
+void genRandStack(int64_t argc,int* toExit, void** argv){
+	if(!stck){
+		
+		stck=initDLStack(sizeof(int));
+		
+	}
+
+	if(stck){
+
+		int* arr= getRandIntArr(minRand,maxRand,randArrSize);
+		
+		for(int i=0;i<randArrSize;i++){
+
+
+			pushDLStack(stck,&arr[i]);
+		}
+		
+		free(arr);
+
+	}
+
+
+}
 void remElemStack(int64_t argc,int* toExit, void** argv){
 
 

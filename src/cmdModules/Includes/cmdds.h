@@ -12,6 +12,8 @@ void printElems(int64_t argc,int* toExit, void** argv);
 void remElem(int64_t argc,int* toExit, void** argv);
 
 
+void genRand(int64_t argc,int* toExit, void** argv);
+
 void sairds(int64_t argc,int* toExit, void** argv);
 
 void showallds(int64_t argc,int* toExit, void** argv);

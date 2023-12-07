@@ -4,14 +4,22 @@
 #include "../../Includes/cmdstruct.h"
 
 
+
+static const int randArrSize= 20;
+
+static const int minRand= 0;
+
+static const int maxRand= 1000;
+
 cmdstruct dlistcmds[]={
-			{"addelem",1,addElemDList,"Adiciona elemento"},
-			{"print",0,printElemsDList,"Mostra elementos"},
-			{"remelem",0,remElemDList,"remove elemento da stack"},
-			{"sairds",0,sairDList,"sair"},
-			{"showallds",0,showallDList,"mostrar comandos disponiveis"},
-			{"destroyds",0,destroyDListW,"destroy stack"},
-			{"",0,0,""}
+			{"addelem",addElemDList,"Adiciona elemento"},
+			{"print",printElemsDList,"Mostra elementos"},
+			{"remelem",remElemDList,"remove elemento da stack"},
+			{"genrandelems",genRandDList,"gerar elementos aleatorios"},
+			{"sairds",sairDList,"sair"},
+			{"showallds",showallDList,"mostrar comandos disponiveis"},
+			{"destroyds",destroyDListW,"destroy stack"},
+			{"",0,""}
 		};
 static int compareInts(int* a,int*b){
 
@@ -52,6 +60,30 @@ void printElemsDList(int64_t argc,int* toExit, void** argv){
 
 }
 
+void genRandDList(int64_t argc,int* toExit, void** argv){
+
+	if(!list){
+		
+		list=initDList(sizeof(int));
+		
+	}
+	
+	if(list){
+
+		int* arr= getRandIntArr(minRand,maxRand,randArrSize);
+		
+		for(int i=0;i<randArrSize;i++){
+
+
+			addElemToListComp(list,arr+i);
+		}
+		
+		free(arr);
+
+	}
+
+
+}
 void remElemDList(int64_t argc,int* toExit, void** argv){
 
 	if(argc!=2){

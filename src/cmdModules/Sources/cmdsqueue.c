@@ -5,14 +5,21 @@
 #include "../../Includes/cmdstruct.h"
 
 
+static const int randArrSize= 20;
+
+static const int minRand= 0;
+
+static const int maxRand= 1000;
+
 cmdstruct queuecmds[]={
-			{"addelem",1,addElemQueue,"Adiciona elemento"},
-			{"print",0,printElemsQueue,"Mostra elementos"},
-			{"remelem",0,remElemQueue,"remove elemento da queue"},
-			{"sairds",0,sairQueue,"sair"},
-			{"showallds",0,showallQueue,"mostrar comandos disponiveis"},
-			{"destroyds",0,destroyQueue,"destroy queue"},
-			{"",0,0,""}
+			{"addelem",addElemQueue,"Adiciona elemento"},
+			{"print",printElemsQueue,"Mostra elementos"},
+			{"remelem",remElemQueue,"remove elemento da queue"},
+			{"genrandelems",genRandQueue,"gerar elementos aleatorios"},
+			{"sairds",sairQueue,"sair"},
+			{"showallds",showallQueue,"mostrar comandos disponiveis"},
+			{"destroyds",destroyQueue,"destroy queue"},
+			{"",0,""}
 		};
 static int compareInts(int* a,int*b){
 
@@ -62,6 +69,25 @@ void remElemQueue(int64_t argc,int* toExit, void** argv){
 		printf("%d\n",*ptr);
 		
 		free(ptr);
+	}
+
+
+}
+
+void genRandQueue(int64_t argc,int* toExit, void** argv){
+
+	if(q){
+
+		int* arr= getRandIntArr(minRand,maxRand,randArrSize);
+		
+		for(int i=0;i<randArrSize;i++){
+
+
+			enqueueDLQueue(q,&arr[i]);
+		}
+		
+		free(arr);
+
 	}
 
 

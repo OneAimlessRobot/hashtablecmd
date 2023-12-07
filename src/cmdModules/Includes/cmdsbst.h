@@ -8,6 +8,8 @@ void printElemsBST(int64_t argc,int* toExit, void** argv);
 void remElemBST(int64_t argc,int* toExit, void** argv);
 
 
+void genRandBST(int64_t argc,int* toExit, void** argv);
+
 void sairBST(int64_t argc,int* toExit, void** argv);
 
 void showallBST(int64_t argc,int* toExit, void** argv);

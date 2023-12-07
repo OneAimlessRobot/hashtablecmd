@@ -8,6 +8,7 @@ void printElemsDList(int64_t argc,int* toExit, void** argv);
 
 void remElemDList(int64_t argc,int* toExit, void** argv);
 
+void genRandDList(int64_t argc,int* toExit, void** argv);
 
 void sairDList(int64_t argc,int* toExit, void** argv);
 

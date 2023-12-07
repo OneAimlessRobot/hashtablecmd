@@ -9,6 +9,8 @@ void printElemsQueue(int64_t argc,int* toExit, void** argv);
 void remElemQueue(int64_t argc,int* toExit, void** argv);
 
 
+void genRandQueue(int64_t argc,int* toExit, void** argv);
+
 void sairQueue(int64_t argc,int* toExit, void** argv);
 
 void showallQueue(int64_t argc,int* toExit, void** argv);

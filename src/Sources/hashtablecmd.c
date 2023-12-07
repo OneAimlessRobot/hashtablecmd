@@ -14,7 +14,7 @@ hashtablecomp* initCmdLine(cmdstruct commands[]){
 	hashtablecomp* result= initHashTableComp(sizeof(cmdstruct),&cmdcomparator,&cmdhasher);
 	int i=0;
 	while(commands[i].cmdname[0]){
-		cmdstruct* newcmd= spawnCmdStruct(commands[i].cmdname,commands[i].numOfArgs,commands[i].cmd,commands[i].helpdesc);
+		cmdstruct* newcmd= spawnCmdStruct(commands[i].cmdname,commands[i].cmd,commands[i].helpdesc);
 		addToHTComp(&result,newcmd);
 		free(newcmd);
 		i++;
@@ -59,7 +59,7 @@ void runCmdLine(hashtablecomp* cmdLookupTable){
                 line[strlen(line)-1]=0;
 		int64_t numOfArgs=  makeargv(line, argv);
 		if(argv[0]){
-		cmdstruct* cmd =spawnCmdStruct(argv[0],0,NULL,"");
+		cmdstruct* cmd =spawnCmdStruct(argv[0],NULL,"");
 		cmdstruct* result= getHTElemComp(cmdLookupTable,(void*)cmd);
 		free(cmd);
 		

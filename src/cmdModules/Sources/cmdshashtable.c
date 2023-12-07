@@ -7,14 +7,17 @@
 
 #define STRINGLENGTH 10
 
+static const int randArrSize= 20;
+
 cmdstruct hashtablecmds[]={
-			{"addelem",1,addElemHashTable,"Adiciona elemento"},
-			{"print",0,printElemsHashTable,"Mostra elementos"},
-			{"remelem",0,remElemHashTable,"remove elemento da stack"},
-			{"sairds",0,sairHashTable,"sair"},
-			{"showallds",0,showallHashTable,"mostrar comandos disponiveis"},
-			{"destroyds",0,destroyHashTable,"destroy stack"},
-			{"",0,0,""}
+			{"addelem",addElemHashTable,"Adiciona elemento"},
+			{"print",printElemsHashTable,"Mostra elementos"},
+			{"remelem",remElemHashTable,"remove elemento da stack"},
+			{"genrandelems",genRandHashTable,"gerar elementos aleatorios"},
+			{"sairds",sairHashTable,"sair"},
+			{"showallds",showallHashTable,"mostrar comandos disponiveis"},
+			{"destroyds",destroyHashTable,"destroy stack"},
+			{"",0,""}
 		};
 static int compareStrings(void* a,void*b){
 
@@ -83,6 +86,41 @@ void printElemsHashTable(int64_t argc,int* toExit, void** argv){
 
 }
 
+void genRandHashTable(int64_t argc,int* toExit, void** argv){
+	if(!comp){
+
+		comp=malloc(sizeof(comparator));
+		comp->func=compareStrings;
+	}
+	if(!hfunc){
+		hfunc=malloc(sizeof(hasher));
+		hfunc->func=hashString;
+
+
+	}
+	if(!hashtable){
+		
+		hashtable=initHashTableComp(STRINGLENGTH,comp,hfunc);
+		
+	}
+	if(hashtable){
+
+		char** arr= randStrArr(STRINGLENGTH-1,randArrSize);
+		
+		for(int i=0;i<randArrSize;i++){
+
+			char buff[STRINGLENGTH];
+			memset(buff,0 ,STRINGLENGTH);
+			memcpy(buff,arr[i],min(STRINGLENGTH-1,strlen(arr[i])));
+			addToHTComp(&hashtable,buff);
+		}
+		
+		freeStrArr(arr,randArrSize);
+
+	}
+
+
+}
 void remElemHashTable(int64_t argc,int* toExit, void** argv){
 
 	if(argc!=2){

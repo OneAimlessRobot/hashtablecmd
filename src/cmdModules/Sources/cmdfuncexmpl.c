@@ -11,22 +11,22 @@
 
 
 cmdstruct commands[]={
-			{"add",2,addNums,"printa a soma dos dois numeros que deres."},
-			{"mult",2,multNums,"printa o produto dos dois numeros que deres."},
-			{"whoami",1,myname,"Faz echo da string fornecida"},
-			{"sair",0,sair,"Sair do programa"},
-			{"myiq",0,myiq,"Mostra o teu qi"},
-			{"showall",0,showall,"Mostra este menu"},
-			{"quote",0,showRandomQuote,"Inspirador"},
-			{"fact",1,factorial,"Factorial"},
-			{"sumarr",-1,sumarr,"somar array de numeros"},
-			{"dsplay",0,dsplay,"brinca com uma estrutura de dados (minHeap)"},
-			{"stackplay",0,stackplay,"brinca com uma estrutura de dados (stack)"},
-			{"bstplay",0,bstplay,"brinca com uma estrutura de dados (bst)"},
-			{"queueplay",0,queueplay,"brinca com uma estrutura de dados (queue)"},
-			{"dlistplay",0,dlistplay,"brinca com uma estrutura de dados (double linked list)"},
-			{"hashtableplay",0,hashtableplay,"brinca com uma estrutura de dados (hashtable)"},
-			{"",0,0,""}
+			{"add",addNums,"printa a soma dos dois numeros que deres."},
+			{"mult",multNums,"printa o produto dos dois numeros que deres."},
+			{"whoami",myname,"Faz echo da string fornecida"},
+			{"sair",sair,"Sair do programa"},
+			{"myiq",myiq,"Mostra o teu qi"},
+			{"showall",showall,"Mostra este menu"},
+			{"quote",showRandomQuote,"Inspirador"},
+			{"fact",factorial,"Factorial"},
+			{"sumarr",sumarr,"somar array de numeros"},
+			{"dsplay",dsplay,"brinca com uma estrutura de dados (minHeap)"},
+			{"stackplay",stackplay,"brinca com uma estrutura de dados (stack)"},
+			{"bstplay",bstplay,"brinca com uma estrutura de dados (bst)"},
+			{"queueplay",queueplay,"brinca com uma estrutura de dados (queue)"},
+			{"dlistplay",dlistplay,"brinca com uma estrutura de dados (double linked list)"},
+			{"hashtableplay",hashtableplay,"brinca com uma estrutura de dados (hashtable)"},
+			{"",0,""}
 		};
 
 #define NUMOFQUOTES 8

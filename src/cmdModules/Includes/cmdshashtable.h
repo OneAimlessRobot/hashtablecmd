@@ -9,6 +9,8 @@ void printElemsHashTable(int64_t argc,int* toExit, void** argv);
 void remElemHashTable(int64_t argc,int* toExit, void** argv);
 
 
+void genRandHashTable(int64_t argc,int* toExit, void** argv);
+
 void sairHashTable(int64_t argc,int* toExit, void** argv);
 
 void showallHashTable(int64_t argc,int* toExit, void** argv);

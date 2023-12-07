@@ -8,6 +8,8 @@ void printElemsStack(int64_t argc,int* toExit, void** argv);
 
 void remElemStack(int64_t argc,int* toExit, void** argv);
 
+void genRandStack(int64_t argc,int* toExit, void** argv);
+
 
 void sairStack(int64_t argc,int* toExit, void** argv);
 

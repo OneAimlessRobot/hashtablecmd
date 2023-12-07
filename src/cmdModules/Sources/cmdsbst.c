@@ -4,14 +4,21 @@
 #include "../../Includes/cmdstruct.h"
 
 
+static const int randArrSize= 20;
+
+static const int minRand= 0;
+
+static const int maxRand= 1000;
+
 cmdstruct bstcmds[]={
-			{"addelem",1,addElemBST,"Adiciona elemento"},
-			{"print",0,printElemsBST,"Mostra elementos"},
-			{"remelem",1,remElemBST,"remove elemento da bst"},
-			{"sairds",0,sairBST,"sair"},
-			{"showallds",0,showallBST,"mostrar comandos disponiveis"},
-			{"destroyds",0,destroyBST,"destroy bst"},
-			{"",0,0,""}
+			{"addelem",addElemBST,"Adiciona elemento"},
+			{"print",printElemsBST,"Mostra elementos"},
+			{"remelem",remElemBST,"remove elemento da bst"},
+			{"genrandelems",genRandBST,"gerar elementos aleatorios"},
+			{"sairds",sairBST,"sair"},
+			{"showallds",showallBST,"mostrar comandos disponiveis"},
+			{"destroyds",destroyBST,"destroy bst"},
+			{"",0,""}
 		};
 static int compareInts(int* a,int*b){
 
@@ -58,6 +65,35 @@ void printElemsBST(int64_t argc,int* toExit, void** argv){
 
 }
 
+void genRandBST(int64_t argc,int* toExit, void** argv){
+	if(!comp){
+
+		comp=malloc(sizeof(comparator));
+		comp->func=(int(*)(void*,void*))compareInts;
+
+	}
+	if(!tree){
+		
+		tree=initBSTreeComp(sizeof(int),comp);
+		
+	}
+	
+	if(tree){
+
+		int* arr= getRandIntArr(minRand,maxRand,randArrSize);
+		
+		for(int i=0;i<randArrSize;i++){
+
+
+			addToBSTree(tree,&arr[i]);
+		}
+		
+		free(arr);
+
+	}
+
+
+}
 void remElemBST(int64_t argc,int* toExit, void** argv){
 
 	if(argc!=2){

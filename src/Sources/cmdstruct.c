@@ -36,14 +36,13 @@ return hash;
 
 }
 
-cmdstruct* spawnCmdStruct(char* name, int64_t numOfArgs, void(*cmd)(int64_t,int*, void**),char* helpdesc){
+cmdstruct* spawnCmdStruct(char* name, void(*cmd)(int64_t,int*, void**),char* helpdesc){
 
 cmdstruct* result= malloc(sizeof(cmdstruct));
 
 memset(result->cmdname,0,CMDMAXLENGTH+1);
 memcpy(result->cmdname,name,min(strlen(name),CMDMAXLENGTH));
 
-result->numOfArgs=numOfArgs;
 
 memset(result->helpdesc,0,CMDDESCLENGTH+1);
 memcpy(result->helpdesc,helpdesc,min(strlen(helpdesc),CMDDESCLENGTH));
