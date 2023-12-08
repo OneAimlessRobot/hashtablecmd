@@ -159,10 +159,12 @@ void destroyHashTable(int64_t argc,int* toExit, void** argv){
 	if(comp){
 
 		free(comp);
+		comp=NULL;
 	}
 	if(hfunc){
 
 		free(hfunc);
+		hfunc=NULL;
 	}
 	if(ht){
 
